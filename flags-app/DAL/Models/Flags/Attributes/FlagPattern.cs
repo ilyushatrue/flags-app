@@ -1,6 +1,6 @@
 ﻿namespace DAL.Models.Flags.Attributes;
 
-internal class FlagPattern
+public class FlagPattern
 {
     public int Id { get; set; }
     public CatalogItem Name { get; set; } = null!;

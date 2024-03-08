@@ -1,6 +1,7 @@
 ﻿namespace DAL.Models.Flags;
 
-internal class StripedFlag : Flag
+public class StripedFlag : Flag
 {
-    public CatalogItem  MyProperty { get; set; }
+    public CatalogItem StripDirection { get; set; } = null!;
+    public CatalogItem StripColor { get; set; } = null!;
 }
