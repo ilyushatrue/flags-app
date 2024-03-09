@@ -1,5 +1,8 @@
-﻿namespace DAL.Models.Flags;
+﻿using DAL.Models.Base;
 
-public class PlainFlag : Flag
+namespace DAL.Models.Flags;
+
+public class PlainFlag : Flag, IBaseEntity
 {
+    public int Id { get; set; }
 }

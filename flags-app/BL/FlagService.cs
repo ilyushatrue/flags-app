@@ -1,16 +1,17 @@
-﻿using DAL;
-using DAL.Models.Flags;
+﻿using DAL.Models.Flags;
+using DAL.Repositories;
 
 namespace BL;
 
 public class FlagService
 {
-    public async Task<IEnumerable<Flag>> GetAllFlags()
+    private readonly FlagRepository _repository;
+    public FlagService()
     {
-        using var db = new Context();
-        IEnumerable<Flag> plainFlags = await db.GetRangeAsync<PlainFlag>();
-        IEnumerable<Flag> stripedFlags = await db.GetRangeAsync<StripedFlag>();
-        var allFlags = plainFlags.Concat(stripedFlags);
-        return allFlags;
+        _repository = new FlagRepository();
+    }
+    public async Task<IEnumerable<Flag>> GetAllFlagsAsync()
+    {
+        return await _repository.GetAllFlagsAsync();
     }
 }

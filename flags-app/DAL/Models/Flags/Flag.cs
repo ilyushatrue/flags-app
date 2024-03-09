@@ -2,7 +2,7 @@
 
 namespace DAL.Models.Flags;
 
-public class Flag : BaseEntity
+public class Flag
 {    
     public int CountryId { get; set; }
     public string Name { get; set; } = null!;
