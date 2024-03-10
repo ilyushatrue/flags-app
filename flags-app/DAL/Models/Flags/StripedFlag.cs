@@ -1,10 +1,7 @@
-﻿using DAL.Models.Base;
+﻿namespace DAL.Models.Flags;
 
-namespace DAL.Models.Flags;
-
-public class StripedFlag : Flag, IBaseEntity
+public class StripedFlag : Flag
 {
-    public int Id { get; set; }
     public CatalogItem StripDirection { get; set; } = null!;
     public CatalogItem StripColor { get; set; } = null!;
 }

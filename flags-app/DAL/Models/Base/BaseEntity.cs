@@ -1,6 +1,9 @@
-﻿namespace DAL.Models;
+﻿using DAL.Models.Base;
 
-public class BaseEntity 
+namespace DAL.Models;
+
+public class BaseEntity : IBaseEntity
 {
     public int Id { get; set; }
+    public bool IsDeleted { get; set; }
 }
