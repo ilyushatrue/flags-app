@@ -16,8 +16,6 @@ internal class Context : DbContext
     internal Context()
     {
         _context = this;
-        //_context?.Database.EnsureDeleted();
-        //_context?.Database.EnsureCreated();
     }
     internal static Context Initialize()
     {
@@ -62,6 +60,12 @@ internal class Context : DbContext
         return entity.Id;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="entity"></param>
+    /// <returns>Number of affected rows</returns>
     internal async Task<int> UpdateEntityAsync<T>(T entity) where T : class, IBaseEntity
     {
         var dbSet = Set<T>();
@@ -83,6 +87,24 @@ internal class Context : DbContext
         return await dbSet.ToListAsync();
     }
 
+    internal async Task<T?> GetEntityAsync<T>(Expression<Func<T, bool>> predicate, bool asNoTracking = true) where T : class, IBaseEntity
+    {
+        var dbSet = Set<T>();
+        T? dbSetItem;
+        if (asNoTracking)
+            dbSetItem = await dbSet.AsNoTracking().FirstOrDefaultAsync(predicate);
+        else
+            dbSetItem = await dbSet.FirstOrDefaultAsync(predicate);
+
+        return dbSetItem;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="id"></param>
+    /// <returns>Number of affected rows</returns>
     internal async Task<int> DeleteEntityAsync<T>(int id) where T : class, IBaseEntity, new()
     {
         var dbSet = Set<T>();
