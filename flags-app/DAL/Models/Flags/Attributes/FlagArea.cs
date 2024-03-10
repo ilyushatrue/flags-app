@@ -1,10 +1,10 @@
 ﻿namespace DAL.Models.Flags.Attributes;
 
-public class FlagArea : BaseEntity
+internal class FlagArea : BaseEntity
 {
     public int FlagId { get; set; }
     public int? ParentId { get; set; }
-    public int ColorId { get; set; } 
+    public int ColorId { get; set; }
 
     public CatalogItem Color { get; set; } = null!;
     public Flag Flag { get; set; } = null!;

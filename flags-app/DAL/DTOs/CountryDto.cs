@@ -1,12 +1,13 @@
-﻿using DAL.Models.Flags;
+﻿using DAL.DTOs.Flags;
 
-namespace DAL.Models;
+namespace DAL.DTOs;
 
-internal class Country : BaseEntity
+public class CountryDto
 {
+    public int Id { get; set; }
     public string Name { get; set; } = null!;
     public string CapitalName { get; set; } = null!;
     public string? Description { get; set; }
 
-    public Flag Flag { get; set; } = null!;
+    public FlagDto Flag { get; set; } = null!;
 }

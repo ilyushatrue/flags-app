@@ -1,5 +1,5 @@
 ﻿namespace DAL.Models.Flags;
 
-public class PlainFlag : Flag
+internal class PlainFlag : Flag
 {
 }

@@ -1,7 +1,30 @@
-﻿// See https://aka.ms/new-console-template for more information
-using BL;
+﻿using BL;
+using DAL.DTOs;
+using DAL.DTOs.Flags;
+using DAL.DTOs.Flags.Attributes;
 
-Console.WriteLine("Hello, World!");
-var k = new FlagService();
-var isdaf = await k.GetAllFlagsAsync();
-isdaf.ToList().ForEach(x => Console.WriteLine(x));  
+var flagService = new FlagService();
+var catalogService = new CatalogService();
+var countryService = new CountryService();
+
+var color = await catalogService.CreateCatalogItem(new CatalogItemDto()
+{
+    Context = "color",
+    Name = "black",
+});
+
+
+var area = new FlagAreaDto()
+{
+    ColorId = color,
+};
+
+var sadf = await flagService.CreateFlagAsync(new FlagDto()
+{
+    Area = new FlagAreaDto()
+    {
+        
+    }
+});
+var isdaf = await flagService.GetAllFlagsAsync();
+isdaf.ToList().ForEach(Console.WriteLine);  

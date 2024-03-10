@@ -1,6 +1,6 @@
 ﻿namespace DAL.Models.Base;
 
-public interface IBaseEntity
+internal interface IBaseEntity
 {
     public int Id { get; set; }
     public bool IsDeleted { get; set; }

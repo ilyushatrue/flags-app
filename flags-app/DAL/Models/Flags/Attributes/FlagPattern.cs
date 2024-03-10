@@ -1,6 +1,6 @@
 ﻿namespace DAL.Models.Flags.Attributes;
 
-public class FlagPattern : BaseEntity
+internal class FlagPattern : BaseEntity
 {
     public int Count { get; set; }
     public int NameId { get; set; }
