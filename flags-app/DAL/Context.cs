@@ -83,6 +83,18 @@ internal class Context : DbContext
         return await dbSet.ToListAsync();
     }
 
+    internal async Task<T?> GetEntityAsync<T>(Expression<Func<T, bool>> predicate, bool asNoTracking = true) where T : class, IBaseEntity
+    {
+        var dbSet = Set<T>();
+        T? dbSetItem;
+        if (asNoTracking)
+            dbSetItem = await dbSet.AsNoTracking().FirstOrDefaultAsync(predicate);
+        else
+            dbSetItem = await dbSet.FirstOrDefaultAsync(predicate);
+
+        return dbSetItem;
+    }
+
     internal async Task<int> DeleteEntityAsync<T>(int id) where T : class, IBaseEntity, new()
     {
         var dbSet = Set<T>();
