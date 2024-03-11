@@ -1,25 +1,30 @@
 ﻿using BL;
-using DAL.DTOs.Flags;
-using DAL.DTOs.Flags.Attributes;
+using BL.Services;
 
 var flagService = new FlagService();
 var catalogService = new CatalogService();
 var countryService = new CountryService();
+var flagAreaService= new FlagAreaService();
+var flagPatternService= new FlagPatternService();
 
+var countryId = await countryService.CreateCountryAsync(new()
+{
+    CapitalName = "Москва",
+    Name =  "Россия",
+});
 var color = await catalogService.GetColorAsync("black");
 if (color == null) return;
-//var flagArea = awa
-//var area = new FlagAreaDto()
-//{
-//    ColorId = color,
-//};
-
-var sadf = await flagService.CreateFlagAsync(new FlagDto()
+var flagId = await flagService.CreateFlagAsync(new()
 {
-    Area = new FlagAreaDto()
-    {
-
-    }
+    Name = "Российский флаг",
+    CountryId = countryId,
 });
+
+var flagArea = await flagAreaService.CreateFlagAreaAsync(new() 
+{ 
+    ColorId = color.Id,
+    FlagId = flagId,
+});
+
 var isdaf = await flagService.GetAllFlagsAsync();
 isdaf.ToList().ForEach(Console.WriteLine);

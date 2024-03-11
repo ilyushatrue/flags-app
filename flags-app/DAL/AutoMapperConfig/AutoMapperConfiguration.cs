@@ -17,13 +17,16 @@ internal class AutoMapperConfiguration
         _configuration = new MapperConfiguration(config =>
         {
             config.CreateMap<Flag, FlagDto>();
+            config.CreateMap<FlagDto, Flag>();
             config.CreateMap<StripedFlag, StripedFlagDto>()
                 .ForMember(dto=>dto.StripColor, exp => exp.MapFrom(entity => entity.StripColor.Name))
                 .ForMember(dto=>dto.StripDirection, exp => exp.MapFrom(entity => entity.StripDirection.Name));
             config.CreateMap<FlagArea, FlagAreaDto>();
+            config.CreateMap<FlagAreaDto, FlagArea>();
             config.CreateMap<CatalogItem, CatalogItemDto>();
             config.CreateMap<CatalogItemDto, CatalogItem>();
             config.CreateMap<Country, CountryDto>();
+            config.CreateMap<CountryDto, Country>();
         });
         Mapper = new Mapper(_configuration);
     }

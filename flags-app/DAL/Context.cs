@@ -7,6 +7,8 @@ using DAL.Relations.Flags;
 using DAL.Relations.Flags.Attributes;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+using System.Reflection;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace DAL;
 
@@ -34,7 +36,7 @@ internal class Context : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        var dbPath = "C:\\Users\\i.truhin\\Documents\\C# projects\\flags-app\\DAL\\db\\db.sql";
+        var dbPath = Directory.GetCurrentDirectory()+ "\\db\\db.sql";
         optionsBuilder.UseSqlite($"Data Source={dbPath}");
     }
 

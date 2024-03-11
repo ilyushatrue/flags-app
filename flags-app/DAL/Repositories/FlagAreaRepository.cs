@@ -6,7 +6,7 @@ namespace DAL.Repositories;
 
 public class FlagAreaRepository : BaseRepository
 {
-    public async Task<int> CreateFlagArea(FlagAreaDto dto)
+    public async Task<int> CreateFlagAreaAsync(FlagAreaDto dto)
     {
         var entity = Mapper.Map<FlagAreaDto, FlagArea>(dto);
         var id = await Context.InsertEntityAsync(entity);
@@ -20,7 +20,7 @@ public class FlagAreaRepository : BaseRepository
     }
     public async Task<int> DeleteFlagArea(int id)
     {
-        var id = await Context.DeleteEntityAsync<FlagArea>(id);
-        return id;
+        var affectedCount = await Context.DeleteEntityAsync<FlagArea>(id);
+        return affectedCount;
     }
 }

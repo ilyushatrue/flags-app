@@ -1,7 +1,7 @@
 ﻿using DAL.DTOs.Flags;
 using DAL.Repositories;
 
-namespace BL;
+namespace BL.Services;
 
 public class FlagService
 {
